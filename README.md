@@ -20,3 +20,6 @@ A terminal-based "Choose Your Own Adventure" game where the player explores a 10
    Esteban Mora
    Andreas Hitt
    Carlos Vega
+
+   Moved code from here, from branch: Merrged-branch
+   https://github.com/Andreas-Hitt/CYOA-game
