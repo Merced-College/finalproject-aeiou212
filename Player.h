@@ -5,36 +5,40 @@
 #include <string>
 #include <iostream>
 #include "Item.h"
+#include "Inventory.h" 
 
 class Player {
 private:
     int health;
-    int money;
+    int money;  
     int luck;
-    std::vector<Item> inventory;
+    int damage;   
+    Inventory inventory; 
 
 public:
-    Player() : health(100), money(50), luck(5) {}
-
-    void adjustHealth(int amount) { health += amount; }
-    void adjustMoney(int amount) { money += amount; }
-    void addLuck(int amount) { luck += amount; }
-    void addItem(Item item) { inventory.push_back(item); }
-
+    Player();
+    void adjustHealth(int amount);
+    void adjustMoney(int amount); 
+    void addLuck(int amount);
+    void addItem(Item item);
+    
     int getHealth() const { return health; }
+    int getMoney() const { return money; }
     int getLuck() const { return luck; }
-    int getInvSize() const { return (int)inventory.size(); }
+    int getDamage() const { return damage; }
+    int getInvSize() const;
     bool isAlive() const { return health > 0; }
     
-    void displayStatus() const {
-        std::string condition = (health < 30) ? "WOUNDED" : "HEALTHY";
-        std::cout << "\n========================================" << std::endl;
-        std::cout << " STATUS: " << condition << " | HP: " << health << " | Gold: " << money << " | Luck: " << luck << std::endl;
-        std::cout << " INV: ";
-        if(inventory.empty()) std::cout << "Empty";
-        for (const auto& item : inventory) std::cout << "[" << item.name << "] ";
-        std::cout << "\n========================================" << std::endl;
-    }
+    void displayStatus() const;
+    
+    // Non-const version (for when you want to modify items)
+    Inventory& getInventory() { return inventory; }
+    
+    // Const version (FIX: This allows read-only access for SaveSystem)
+    const Inventory& getInventory() const { return inventory; }
+    
+    void sortInventoryByValue(); 
+    int findItemIndex(int targetValue);
 };
 
 #endif
