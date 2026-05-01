@@ -16,3 +16,7 @@ A terminal-based "Choose Your Own Adventure" game where the player explores a 10
    make clean
    make
    ./adventure
+
+   Esteban Mora
+   Andreas Hitt
+   Carlos Vega
